@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import pika
+
 
 class mqConsumerInterface:
     def __init__(
@@ -23,18 +25,10 @@ class mqConsumerInterface:
         pass
 
     def setupRMQConnection(self) -> None:
-        # Set-up Connection to RabbitMQ service
-
-        # Establish Channel
-
-        # Create Queue if not already present
-
-        # Create the exchange if not already present
-
-        # Bind Binding Key to Queue on the exchange
-
-        # Set-up Callback function for receiving messages
-        pass
+        conParams = pika.URLParameters(os.environ['AMQP_URL'])
+        connection = pika.BlockingConnection(parameters=conParams)
+        channel = connection.channel()
+        channel.queue_declare(queue=)
 
     def on_message_callback(
         self, channel, method_frame, header_frame, body
