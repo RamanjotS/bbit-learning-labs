@@ -36,11 +36,6 @@ class mqConsumerInterface:
             exchange=self.exchange_name,
         )
         channel.basic_consume(self.queue_name, self.on_message_callback, auto_ack=False)
-        # channel.basic_publish(
-        #     exchange=self.exchange_name,
-        #     routing_key=self.binding_key,
-        #     body="Message",
-        # )
 
 
     def on_message_callback(
